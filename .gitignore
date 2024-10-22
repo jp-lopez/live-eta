@@ -1,0 +1,45 @@
+target/
+
+### Scala template
+*.class
+*.log
+
+# sbt specific
+.cache
+.bsp/sbt.json
+.history
+.lib/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+#apple shit
+.DS_Store
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+*.iml
+.idea/
+*.env
+*.ipynb
+.vscode/
+.metals/
+.bloop/
+metals.sbt
+
+#local dev
+local-dev/s3/data/.minio.sys
+local-dev/s3/data/data_local_stuart_com/maps/
+local-dev/maps/
+experiments/
+node_modules/
+.parcel-cache/
+dist/
+route-engine-profile-evaluator-assistant/server/src/main/resources/ui/app.js
+route-engine-profile-evaluator-assistant/server/src/main/resources/ui/app.js.map
+route-engine-profile-evaluator-assistant/*.env
+
+\?/

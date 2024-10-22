@@ -1,0 +1,4 @@
+-Dsbt.boot.lock=false
+-Dsbt.override.build.repos=true
+-Dsbt.repository.config=repositories
+-Dsbt.io.jdktimestamps=true

@@ -1,0 +1,6 @@
+[repositories]
+    local
+    stuart-maven-public: https://nexus.internal.stuart.com/repository/maven-public/
+    stuart-ivy-public: https://nexus.internal.stuart.com/repository/ivy-public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+    stuart-maven-snapshots: https://nexus.internal.stuart.com/repository/maven-snapshots/
+    stuart-maven-releases: https://nexus.internal.stuart.com/repository/maven-releases/
