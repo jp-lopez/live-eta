@@ -1,5 +1,4 @@
 import sbt.*
-import sbt.Keys.libraryDependencies
 import sbt.librarymanagement.{CrossVersion, DependencyBuilders}
 
 object V {
@@ -19,9 +18,6 @@ object V {
 
   // Gatling
   val gatlingVersion = "3.7.4"
-
-  // GH country maps
-  val ghCountryMapsVersion = "7.14.0"
 
   // jts2geojson
   lazy val jts2geojsonVersion = "0.18.1"
@@ -135,76 +131,6 @@ object Dependencies {
     )
   )
 
-  lazy val ghCountryMapsDependencies: Seq[ModuleID] = Seq(
-    ("com.stuart.platform" %% "gh-country-maps" % V.ghCountryMapsVersion).cross(
-      CrossVersion.for3Use2_13
-    ),
-    ("com.stuart.platform" %% "gh-country-maps-client" % V.ghCountryMapsVersion).cross(
-      CrossVersion.for3Use2_13
-    ),
-    ("com.stuart.platform" %% "gh-country-maps-artifacts-client" % V.ghCountryMapsVersion).cross(
-      CrossVersion.for3Use2_13
-    ),
-    ("com.stuart.platform" %% "gh-country-maps-versioning" % V.ghCountryMapsVersion).cross(
-      CrossVersion.for3Use2_13
-    )
-  ).map(
-    _.excludeAll(
-      ExclusionRule(organization = "com.fasterxml"),
-      ExclusionRule(organization = "org.typelevel"),
-      ExclusionRule(organization = "org.testcontainers"),
-      ExclusionRule(organization = "com.monovore"),
-      ExclusionRule(organization = "io.circe")
-    )
-  )
-
-  lazy val ghCountryMapsModelDependencies: Seq[ModuleID] = Seq(
-    ("com.stuart.platform" %% "gh-country-maps-models" % V.ghCountryMapsVersion).cross(
-      CrossVersion.for3Use2_13
-    )
-  )
-
-  lazy val ghCountryTestMapsDependencies: Seq[ModuleID] = Seq(
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_all_andorra")),
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_bike_andorra")),
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_car_andorra")),
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_motorbike_andorra")),
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_walk_andorra")),
-    ("com.stuart.platform" %% "gh-country-maps-test" % V.ghCountryMapsVersion % Test)
-      .cross(
-        CrossVersion.for3Use2_13
-      )
-      .artifacts(Artifact("gh-country-maps-test", "zip", "zip", "stuart_all_andorra_la_vella"))
-  ).map(
-    _.excludeAll(
-      ExclusionRule(organization = "com.fasterxml"),
-      ExclusionRule(organization = "org.typelevel"),
-      ExclusionRule(organization = "org.testcontainers"),
-      ExclusionRule(organization = "com.monovore"),
-      ExclusionRule(organization = "io.circe")
-    )
-  )
-
   lazy val geojsonDependencies: Seq[ModuleID] = Seq(
     "org.wololo" % "jts2geojson" % V.jts2geojsonVersion
   )
@@ -268,27 +194,5 @@ object Dependencies {
     "org.duckdb"           % "duckdb_jdbc"                    % V.duckDBVersion
   ).map(_ % Test)
 
-  lazy val modelDependencies: Seq[ModuleID] = catsDependencies ++ ghCountryMapsModelDependencies
 
-  lazy val serviceDependencies: Seq[ModuleID] =
-    zioDependencies ++ sttpClientDependencies ++ awsDependencies ++
-      commandLineParserDependencies ++ ghCountryMapsDependencies ++ parquetDependencies ++
-      ghCountryTestMapsDependencies ++ duckDbDependencies ++
-      geojsonDependencies ++ h3Dependencies ++ doobieDependencies ++ redshiftDependencies ++
-      geoToolsDependencies ++ jtsDependencies ++ googleDependencies ++ csvDependencies ++ circeDependencies ++ jawnAstDependencies
-
-  lazy val citySpeedStepDependencies: Seq[ModuleID] =
-    zioDependencies ++ sttpClientDependencies ++ awsDependencies ++
-      commandLineParserDependencies ++ ghCountryMapsDependencies ++ parquetDependencies ++
-      geojsonDependencies ++ h3Dependencies ++ doobieDependencies ++ redshiftDependencies ++
-      geoToolsDependencies ++ jtsDependencies ++ googleDependencies ++ csvDependencies ++ jawnAstDependencies ++
-      duckDbDependencies
-
-  lazy val speedTrendDependencies: Seq[ModuleID] = zioDependencies ++ sttpClientDependencies ++ awsDependencies ++
-    commandLineParserDependencies ++ redshiftDependencies ++ duckDbDependencies
-
-  lazy val dependenciesToExclude: Seq[DependencyBuilders.OrganizationArtifactName] = Seq(
-    "org.scala-lang.modules" % "scala-collection-compat_2.13",
-    "com.stuart.platform"    % "route-planner-client_2.13"
-  )
 }
